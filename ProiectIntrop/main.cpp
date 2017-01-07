@@ -9,16 +9,17 @@ void jocnou(int y)
         y=9;
     int ascii=65;
     int a[10][10];
-    char b[10][10];
+    char b[11][11];
     int i,j,q,w,a1,a2;
     q=0;
     w=(y*y)/5;
     w++;
     for(i=1;i<=y;i++)
-        {b[i][0]=ascii;ascii++;}
-        ascii=48;
-    for(j=0;j<=y;j++)
-        {b[0][j]=ascii;ascii++;}
+        {b[i][-1]=ascii;ascii++;b[i][0]=' ';}
+        ascii=49;
+    for(j=1;j<=y;j++)
+        {b[-1][j]=ascii;ascii++;b[0][j]=' ';}
+        b[-1][0]=' ';
         for(i=1;i<=y;i++)
             for(j=1;j<=y;j++)
             {b[i][j]=35;a[i][j]=0;}
@@ -27,9 +28,54 @@ void jocnou(int y)
                 a1=rand()%y+1;
                 a2=rand()%y+1;
                 if(a[a1][a2]==0)
-                {a[a1][a2]=1;q++;}
+                {a[a1][a2]=-1;q++;}
             }
-
+            int a3=0;
+            for(i=1;i<=y;i++)
+                for(j=1;j<=y;j++)
+            {
+                    if(a[i-1][j-1]==-1)
+                    a3++;
+                    if(a[i-1][j]==-1)
+                    a3++;
+                    if(a[i][j-1]==-1)
+                    a3++;
+                    if(a[i+1][j]==-1)
+                    a3++;
+                    if(a[i][j+1]==-1)
+                    a3++;
+                    if(a[i+1][j-1]==-1)
+                    a3++;
+                    if(a[i-1][j+1]==-1)
+                    a3++;
+                    if(a[i+1][j+1]==-1)
+                    a3++;
+                if(a[i][j]==0)
+                    a[i][j]=a3;
+                a3=0;
+            }
+            int bomba=0;
+            char c1,c2;
+            int c3;
+            while(bomba==0)
+    {
+        system("CLS");
+    for(i=-1;i<=y;i++)
+    {for(j=-1;j<=y;j++)
+    cout<<b[i][j]<<" ";
+    cout<<endl;}
+    cout<<endl<<"Exemplu deschidere casuta: O A 2"<<endl;
+    cout<<"Exemplu de marcare casute(flag): F A 2"<<endl;
+    cin>>c1>>c2>>c3;
+    if(c1=='F')
+        b[c2-64][c3]='F';
+    else
+    if(c1=='O')
+    if(a[c2-64][c3]==-1)
+    {bomba=1;cout<<"Boom! Ai pierdut!"<<endl;}
+    else
+    b[c2-64][c3]=a[c2-64][c3]+48;
+    }
 }
 int main()
 {
