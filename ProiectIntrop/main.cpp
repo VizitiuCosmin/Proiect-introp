@@ -1,6 +1,5 @@
 using namespace std;
 #include<iostream>
-#include<fstream>
 #include<time.h>
 #include<stdlib.h>
 void jocnou(int y)
@@ -61,7 +60,6 @@ void jocnou(int y)
             while(bomba==0)
     {
         system("CLS");
-        cout<<verifbombe<<endl;
     for(i=-1;i<=y;i++)
     {for(j=-1;j<=y;j++)
     cout<<b[i][j]<<" ";
@@ -140,8 +138,7 @@ int main()
     do
     {
         cout<<"1. Joc nou"<<endl;
-        cout<<"2. Lista scoruri"<<endl;
-        cout<<"3. Iesire joc"<<endl;
+        cout<<"2. Iesire joc"<<endl;
         cout<<endl<<"Tasteaza optiunea:";
         cin>>x;
     switch(x)
@@ -156,15 +153,11 @@ int main()
         }
     case 2:
         {
-            break;
-        }
-    case 3:
-        {
             cout<<"Ai iesit din joc!";
             break;
         }
     }
     }
-    while(x<3 && x>=1);
+    while(x<2 && x>=1);
     return 0;
 }
